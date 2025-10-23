@@ -3,7 +3,8 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { notifyOwner } from "./_core/notification";
+import { getDb } from "./db";
+import { contacts } from "../drizzle/schema";
 
 export const appRouter = router({
   system: systemRouter,
@@ -29,29 +30,15 @@ export const appRouter = router({
         language: z.enum(['de', 'es', 'en']),
       }))
       .mutation(async ({ input }) => {
-        // Send notification to owner instead of saving to database
-        const languageNames = {
-          de: 'Alemán',
-          es: 'Español',
-          en: 'Inglés'
-        };
+        const db = await getDb();
+        if (!db) throw new Error('Database not available');
         
-        await notifyOwner({
-          title: `🚀 Nuevo Lead de Cargo Branding`,
-          content: `
-**Nuevo contacto desde la web:**
-
-👤 **Nombre:** ${input.name}
-📧 **Email:** ${input.email}
-🏢 **Empresa:** ${input.company || 'No especificada'}
-🌍 **Idioma:** ${languageNames[input.language]}
-
-💬 **Mensaje:**
-${input.message}
-
----
-*Responde lo antes posible para cerrar este cliente.*
-          `.trim()
+        await db.insert(contacts).values({
+          name: input.name,
+          email: input.email,
+          company: input.company,
+          message: input.message,
+          language: input.language,
         });
         
         return { success: true };
@@ -60,4 +47,3 @@ ${input.message}
 });
 
 export type AppRouter = typeof appRouter;
-
