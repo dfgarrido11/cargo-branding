@@ -181,8 +181,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-slate-900/20 rounded-3xl blur-3xl"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img 
-                  src="/truck-hero.jpg" 
-                  alt="Modern European Truck" 
+                  src="/website-mockup.jpg" 
+                  alt="Professional Website Example" 
                   className="w-full h-auto object-cover"
                 />
               </div>
