@@ -1,4 +1,5 @@
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from "@/contexts/LanguageContext";
+import { PricingSection } from "@/components/PricingSection";
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -84,12 +85,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-slate-900 to-slate-700 p-2 rounded-lg">
-                <Truck className="h-7 w-7 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                Cargo Branding
-              </span>
+              <img src="/logo.png" alt="Cargo Branding" className="h-10 w-auto" style={{maxWidth: '200px'}} />
             </div>
             
             <div className="hidden md:flex items-center gap-8">
@@ -240,122 +236,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-orange-600 text-white hover:bg-orange-600">
-              {language === 'de' ? 'Preise' : language === 'es' ? 'Precios' : 'Pricing'}
-            </Badge>
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">
-              {t.pricing.title}
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              {t.pricing.subtitle}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Bronze */}
-            <Card className="border-2 hover:border-orange-500 transition-all duration-300">
-              <CardHeader className="pb-8">
-                <CardTitle className="text-2xl font-black">{t.pricing.bronze.name}</CardTitle>
-                <CardDescription className="text-base">{t.pricing.bronze.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">{t.pricing.setup}</div>
-                  <div className="text-5xl font-black text-slate-900">€297</div>
-                </div>
-                <div className="bg-slate-50 rounded-xl p-4">
-                  <div className="text-3xl font-black text-orange-600">€27</div>
-                  <div className="text-sm text-slate-600">{t.pricing.monthly}</div>
-                </div>
-                <ul className="space-y-3">
-                  {t.pricing.bronze.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-slate-900 hover:bg-slate-800" size="lg" onClick={() => scrollToSection('contact')}>
-                  {t.pricing.getStarted}
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Silver - Popular */}
-            <Card className="border-4 border-orange-500 shadow-2xl shadow-orange-500/20 scale-105 relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                <Badge className="bg-gradient-to-r from-orange-600 to-orange-500 text-white px-6 py-2 text-sm font-bold shadow-lg">
-                  {language === 'de' ? '⭐ BELIEBT' : language === 'es' ? '⭐ POPULAR' : '⭐ POPULAR'}
-                </Badge>
-              </div>
-              <CardHeader className="pb-8 pt-8">
-                <CardTitle className="text-2xl font-black">{t.pricing.silver.name}</CardTitle>
-                <CardDescription className="text-base">{t.pricing.silver.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">{t.pricing.setup}</div>
-                  <div className="text-5xl font-black text-slate-900">€497</div>
-                </div>
-                <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-4 text-white">
-                  <div className="text-3xl font-black">€47</div>
-                  <div className="text-sm text-orange-100">{t.pricing.monthly}</div>
-                </div>
-                <ul className="space-y-3">
-                  {t.pricing.silver.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white shadow-lg" size="lg" onClick={() => scrollToSection('contact')}>
-                  {t.pricing.getStarted}
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Gold */}
-            <Card className="border-2 hover:border-orange-500 transition-all duration-300">
-              <CardHeader className="pb-8">
-                <CardTitle className="text-2xl font-black">{t.pricing.gold.name}</CardTitle>
-                <CardDescription className="text-base">{t.pricing.gold.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">{t.pricing.setup}</div>
-                  <div className="text-5xl font-black text-slate-900">€797</div>
-                </div>
-                <div className="bg-slate-50 rounded-xl p-4">
-                  <div className="text-3xl font-black text-orange-600">€97</div>
-                  <div className="text-sm text-slate-600">{t.pricing.monthly}</div>
-                </div>
-                <ul className="space-y-3">
-                  {t.pricing.gold.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-slate-900 hover:bg-slate-800" size="lg" onClick={() => scrollToSection('contact')}>
-                  {t.pricing.getStarted}
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-      </section>
+        {/* Pricing Section */}
+        <PricingSection language={language} />
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
@@ -517,11 +399,8 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-2 rounded-lg">
-                  <Truck className="h-7 w-7 text-white" />
-                </div>
-                <span className="text-2xl font-bold">Cargo Branding</span>
+              <div className="mb-6">
+                <img src="/logo.png" alt="Cargo Branding" className="h-16" />
               </div>
               <p className="text-slate-400 text-lg mb-6">{t.footer.tagline}</p>
               <div className="flex items-center gap-4">

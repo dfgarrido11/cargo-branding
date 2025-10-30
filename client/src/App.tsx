@@ -8,12 +8,17 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Demo from "./pages/Demo";
+import CRMLeads from "./pages/CRMLeads";
+import CRMClients from "./pages/CRMClients";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/dashboard"} component={Dashboard} />
+      <Route path={"/crm/leads"} component={CRMLeads} />
+      <Route path={"/crm/clients"} component={CRMClients} />
+      <Route path={"/crm/payments"} component={CRMClients} />
       <Route path={"/demo/:slug"} component={Demo} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
